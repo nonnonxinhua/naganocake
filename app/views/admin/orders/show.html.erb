@@ -1,0 +1,62 @@
+<h1>注文履歴詳細</h1>
+
+
+ <%= form_with model: @order , url: customers_orders_confirmation_path  do |f| %>
+
+  <h2>購入者</h2><%= @customer.full_name %>
+  <h2>注文日</h2><%= @order.created_at.strftime('%Y/%m/%d') %>
+
+  <div class="field">
+    <h2>支払い方法</h2>
+     <% if @order.payment_method ==0 %>
+     <p>クレジットカード</p>
+     <% else %>
+     <p>銀行振込</p>
+     <% end %>
+  </div>
+
+ <h2>配送先</h2>
+
+  <%= "〒" %><%= @customer.postal_code %><%= @customer.address %><%= @customer.last_name %><%= @customer.first_name %>
+
+ <% end %>
+
+ <div class=container px-5 px-sm-0 >
+  <div class="row" >
+
+    <table class="table table-hover table-inverse">
+      <thead>
+       <tr>
+        <th>商品名</th>
+         <th>単価（税込）</th>
+          <th>数量</th>
+           <th>小計</th>
+
+
+
+       </tr>
+      </thead>
+
+      <tbody>
+       <% @order_details.each do |cart_item| %>
+        <tr>
+         <td><%= cart_item.item.name %></td>
+          <td><%= cart_item.item.price %></td>
+          <td><%= cart_item.amount %></td>
+          <td>
+           <%= cart_item.item.price* cart_item.amount %>
+           <% @subtotal += cart_item.item.price* cart_item.amount %>
+          </td>
+         </tr>
+        <% end %>
+
+
+            <th>送料</th><td><%= @shipping_cost %></td>
+             <th>商品合計</th><td><%= @subtotal %></td>
+              <th>請求金額</th><td><%= @shipping_cost + @subtotal %></td>
+
+
+      </tbody>
+    </table>
+ </div>
+</div>

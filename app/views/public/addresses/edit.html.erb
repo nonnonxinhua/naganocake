@@ -1,0 +1,27 @@
+<p><class="font-weight-normal">配送先編集</p>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+<div class="field">
+    <%= f.label :郵便番号（ハイフンなし） %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :住所 %><br />
+    <%= f.email_field :address, %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name,"(宛名)" %><br />
+    <%= f.text_field :name,  %>
+  </div>
+  <div class="actions">
+    <%= f.submit "変更内容を保存" %>
+  </div>
+<% end %>
+
+<%= render "admin/shared/links" %>

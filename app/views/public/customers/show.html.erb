@@ -1,0 +1,19 @@
+<h3><class="font-weight-normal">マイページ</h3>
+
+ <p><class="font-weight-normal">登録情報</p>
+ <%= link_to "編集する", customers_mypage_edit_path,class:"btn btn-Success" %>
+
+  <p>氏名</p><%= @customers.full_name %>
+   <p>フリガナ</p><%= @customers.last_name_kana %><%= @customers.first_name_kana %>
+    <p>郵便番号</p><%= @customers.postal_code %>
+     <p>住所</p><%= @customers.address %>
+      <p>電話番号</p><%= @customers.telphone_number %>
+       <p>メールアドレス</p><%= @customers.email %>
+
+ <p><class="font-weight-normal">注文履歴</p>
+  <%= link_to "一覧を見る" ,orders_path,class:"btn btn-Primary" %>
+
+
+
+
+

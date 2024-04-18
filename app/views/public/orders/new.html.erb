@@ -1,0 +1,24 @@
+<h3>注文情報入力</h3>
+
+ <%= form_with model: @order , url: customers_orders_confirmation_path  do |f| %>
+
+  <div class="field">
+   <%= f.label :支払方法 %>
+   <%= f.radio_button :payment_method, :true %>
+   <%= f.label :payment_method, "クレジットカード", value: :true %>
+   <%= f.radio_button :payment_method, :false %>
+   <%= f.label :payment_method, "銀行振込", value: :false %>
+  </div>
+
+ <%= f.label :お届け先 %>
+
+
+  <div class="field">
+  <%= f.label :ブランド %>
+  <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+  </div>
+  <%= "〒" %><%= @customer.postal_code %><%= @customer.address %><%= @customer.last_name %><%= @customer.first_name %>-->
+
+ <p><%= f.submit "確認画面へ進む" %></p>
+ <% end %>
+

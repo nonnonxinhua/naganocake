@@ -6,11 +6,138 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+   <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+       <div class="container">
+        <a class="navbar-brand" href="/"><span>LOGO</span></a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+         </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+ <% if admin_signed_in? %>
+
+
+          <li>
+           <%= link_to  admin_items_path, class:"nav-link text-light" do %>
+          <i class="fas fa-items"></i> 商品一覧
+          <% end %>
+          </li>
+
+           <li>
+           <%= link_to  admin_customers_path,class:"nav-link text-light" do %>
+           <i class="fas fa-home"></i> 会員一覧
+           <% end %>
+
+          <li>
+            <%= link_to admin_top_path, class:"nav-link text-light" do %>
+          <i class="fas/end "></i>注文履歴一覧
+          <% end %>
+          </li>
+
+         <li>
+          <%= link_to  admin_genres_index_path, class:"nav-link text-light" do %>
+          <i class="fas fa-sign-out-alt"></i> ジャンル一覧
+          <% end %>
+           </li>
+
+          <li>
+           <%= link_to   destroy_admin_session_path,class:"nav-link text-light" ,method: :delete do %>
+           <i class="fas fa-home"></i> ログアウト
+           <% end %>
+          </li>
+
+
+
+ <% elsif customer_signed_in? %>
+           <li>
+           <%= link_to  customers_mypage_path,class:"nav-link text-light" do %>
+           <i class="fas fa-home"></i> マイページ
+           <% end %>
+
+          </li>
+          <li>
+           <%= link_to  items_path, class:"nav-link text-light" do %>
+          <i class="fas fa-items"></i> 商品一覧
+          <% end %>
+          </li>
+
+          <li>
+            <%= link_to cart_items_path, class:"nav-link text-light" do %>
+          <i class="fas/end "></i>カート
+          <% end %>
+          </li>
+
+         <li>
+          <%= link_to   destroy_customer_session_path, class:"nav-link text-light",method: :delete do %>
+          <i class="fas fa-sign-out-alt"></i> ログアウト
+
+         <% end %>
+          </li>
+
+
+         <% else %>
+           <li>
+           <%= link_to  about_path,class:"nav-link text-light" do %>
+           <i class="fas fa-home"></i> About
+           <% end %>
+
+          </li>
+          <li>
+           <%= link_to  items_path, class:"nav-link text-light" do %>
+          <i class="fas fa-items"></i> 商品一覧
+          <% end %>
+          </li>
+
+          <li>
+            <%= link_to  new_customer_registration_path, class:"nav-link text-light" do %>
+          <i class="fas/end "></i>新規登録
+          <% end %>
+          </li>
+
+         <li>
+          <%= link_to   new_customer_session_path, class:"nav-link text-light" do %>
+          <i class="fas fa-sign-out-alt"></i> ログイン
+
+         <% end %>
+          </li>
+
+
+
+
+        <% end %>
+        </ul>
+         </div>
+       </div>
+  </nav>
+  <div class="d-flex flex-row ">
+
+  </div>
+
+<!--<div class="d-flex flex-row bd-highlight mb-3">-->
+<!--  <div class="p-2 bd-highlight">Flex item 1</div>-->
+<!--  <div class="p-2 bd-highlight">Flex item 2</div>-->
+<!--  <div class="p-2 bd-highlight">Flex item 3</div>-->
+<!--</div>-->
+
+
+
+
+
+
+   </header>
     <%= yield %>
   </body>
+
+
+ <footer>
+
+
+ </footer>
+
 </html>
